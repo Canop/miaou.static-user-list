@@ -29,3 +29,13 @@ This might be
 	"plugins": [
 		"./plugins/miaou.static-user-list/plugin.js"
 	],
+
+## Changes to the list
+
+Each time the `users.csv` file is modified, Miaou must be restarted to take that change into account.
+
+This is usually done with
+
+	./restart.sh
+	
+in the Miaou directory
