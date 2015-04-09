@@ -38,5 +38,6 @@ exports.init = function(miaou, pluginpath){
 			var tokens = line.split(/[,;]/);
 			if (tokens.length>=2) whitelist.add(tokens[0].trim()+' '+tokens[1].trim());
 		}
-	});	
+		console.log("Static User List initialized : " + whitelist.size + " authorized users.");
+	});
 }
