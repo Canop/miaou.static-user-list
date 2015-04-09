@@ -1,10 +1,10 @@
 
 // This plugin checks the user is in a whitelist of users defined by
-//  and oauthprovider and an email, all of them being defined
+//  an oauthprovider and an email, all of them being defined
 //  in a users.csv file
 // Implementation note : the whitelisted state isn't stored in the
-//  req.user object to ensure a simple restart force the check again
-//  whatever other application caches
+//  req.user object to ensure a simple restart forces the check again
+//  whatever other application caches (which might be out of process)
 
 var	userfilepath,
 	path = require('path'),
@@ -22,8 +22,8 @@ exports.appuse = function(req, res, next){
 		email = req.user.email;
 	if (!provider) return fail(req, res, "Inconsistent user state : no OAuth provider.");
 	if (!email) return fail(req, res, "Authenticated user is missing the email field.");
-	if (!whitelist) return fail(req, res, "User list not found. All users are rejected.");
-	if (!whitelist.has(provider+' '+email)) return fail(req, res, "User "+req.user.name+" not found in white list");
+	if (!whitelist) return fail(req, res, "Invalid user list. All users are rejected.");
+	if (!whitelist.has(provider+' '+email)) return fail(req, res, "User not found in white list");
 	next();
 }
 
