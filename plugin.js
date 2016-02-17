@@ -6,8 +6,7 @@
 //  req.user object to ensure a simple restart forces the check again
 //  whatever other application caches (which might be out of process)
 
-var	userfilepath,
-	path = require('path'),
+var	path = require('path'),
 	fs = require('fs'),
 	whitelist;
 
